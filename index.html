@@ -19,7 +19,6 @@
 
      <!-- style CSS -->
       <style>
-        *{
             *{
       font-family: "Poppins", sans-serif;
     }
@@ -28,7 +27,12 @@
       font-family: "Hind Siliguri", sans-serif;
 
         }
+
+        .active{
+            background-color: #422AD5;
+            color: white;
         }
+        
       </style>
 </head>
 <body>
@@ -92,6 +96,41 @@
             
         </div>
     </section>
+
+
+        <section class="flex justify-center items-center py-10 hidden">
+            <span class="loading loading-bars loading-xl"></span>
+
+        </section>
+        
+
+    <section id="level-word" class="bg-gray-200 w-11/12 mt-7 px-3 py-3 m-auto grid grid-cols-2 md:grid-cols-3 rounded-[8px] gap-4">
+
+        <div class="text-center col-span-full py-10 space-y-5">
+            <p class="font-bangla text-[18px] text-gray-400">আপনি এখনো কোন Lesson Select করেননি</p>
+            <h2 class="font-bangla text-4xl">একটি Lesson Select করুন।</h2>
+        </div>
+    </section>
+ 
+
+    <!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+<dialog id="my_modal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div id="details-Container" class="space-y-4">
+        
+    </div>
+    
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn btn-primary">Complete Learning</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+ 
 
     <script src="./script/index.js"></script>
 </body>
