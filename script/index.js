@@ -97,11 +97,11 @@ const displayLevelWord = (levelWords)=>{
     levelWords.forEach(word=>{
         const displayWord = document.createElement("div")
         displayWord.innerHTML = `<div class="bg-white rounded-[8px]  px-10 py-5 text-center h-full space-y-4">
-             <h1 class="text-2xl font-bold">${word.word ?word.word : "শব্দ পাওয়া যায়নি" }</h1>
-            <p class="font-semibold font-bangla">Meaning /Pronounciation</p>
-            <div class="text-2xl font-bold">${word.meaning ? word.meaning : "অর্থ পাওয়া যায়নি"} / ${word.pronunciation ? word.pronunciation : "Pronunciation পাওয়া যায়নি "}</div>
+             <h1 class=" text-xs  md:text-2xl font-bold">${word.word ?word.word : "শব্দ পাওয়া যায়নি" }</h1>
+            <p class=" text-xs  md:text-2xl font-semibold font-bangla">Meaning /Pronounciation</p>
+            <div class=" text-xs md:text-2xl font-bold">${word.meaning ? word.meaning : "অর্থ পাওয়া যায়নি"} / ${word.pronunciation ? word.pronunciation : "Pronunciation পাওয়া যায়নি "}</div>
 
-        <div class="flex justify-between">
+        <div class="flex justify-center gap-7 md:justify-between  ">
             <button onclick="loadDetails(${word.id})" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF90]  "><i class="fa-solid fa-circle-info"></i></button>
             <button onclick ="pronounceWord('${word.word}')" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF90]"><i class="fa-solid fa-volume-high"></i></button>
         </div>
