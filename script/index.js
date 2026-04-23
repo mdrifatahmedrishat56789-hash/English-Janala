@@ -5,13 +5,19 @@ const loadLesson = () =>{
     .then(les=> displayLesson(les.data))
 }
 
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
+
 const removeButton = () =>{
     const lessonButton = document.querySelectorAll(".lesson-button")
      lessonButton.forEach(btn => btn.classList.remove("active"))
 }
 
 const levelWord = (id)=>{
-    
+     manageSpinner(true)
     const url = `https://openapi.programming-hero.com/api/level/${id}`
     fetch(url)
     .then(response=> response.json())
@@ -59,6 +65,7 @@ const displayDetails = (word) =>{
             <div>${createElement(word.synonyms)}</div>
         </div>`
     document.getElementById("my_modal").showModal()
+    manageSpinner(false)
 }
 
 const manageSpinner = (status)=>{
@@ -96,12 +103,13 @@ const displayLevelWord = (levelWords)=>{
 
         <div class="flex justify-between">
             <button onclick="loadDetails(${word.id})" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF90]  "><i class="fa-solid fa-circle-info"></i></button>
-            <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF90]"><i class="fa-solid fa-volume-high"></i></button>
+            <button onclick ="pronounceWord('${word.word}')" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF90]"><i class="fa-solid fa-volume-high"></i></button>
         </div>
         </div>`
         levelWord.append(displayWord)
     })
     manageSpinner(false)
+    return;
     
 
 
@@ -121,5 +129,25 @@ const displayLevelWord = (levelWords)=>{
     }
  }
 loadLesson()
+
+document.getElementById("word-btn").addEventListener("click",()=>{
+    const inputWord = document.getElementById("input-search")
+    const searchValue = inputWord.value.trim().toLowerCase()
+    
+    const url = "https://openapi.programming-hero.com/api/words/all"
+    fetch (url)
+    .then((res)=> res.json())
+    .then((data)=>{
+        const allWord = data.data
+        console.log(allWord)
+        const filterWords = allWord.filter((word)=> word.word.toLowerCase().includes(searchValue)
+        
+    )
+    displayLevelWord(filterWords)
+    })
+    
+
+
+})
  
  
